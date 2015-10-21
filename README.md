@@ -1,6 +1,3 @@
-# radiant-mpc
-files for model identification and mpc 
-
 # Requirements
 ## Julia
 Download and setup instructions for Julia at the Julia website: http://www.juliaopt.org/
