@@ -1,12 +1,12 @@
 function identMatrices(x1,x2,d)
-    N = length(d)
+    N = size(d,1)
 
     A=zeros(2,2)
-    E=zeros(2,1)
+    E=zeros(2,size(d,2))
 
     modelIdent = Model(solver = IpoptSolver())
-    @defVar(modelIdent, row1[1:3])
-    @defVar(modelIdent, row2[1:3])
+    @defVar(modelIdent, row1[1:2+size(d,2)])
+    @defVar(modelIdent, row2[1:2+size(d,2)])
 
     H = [x1 x2 d]
 
@@ -17,12 +17,12 @@ function identMatrices(x1,x2,d)
     solve(modelIdent)
     resultRow1=getValue(row1)
     A[1,:]=resultRow1[1:2]
-    E[1]=resultRow1[3]
+    E[1,:]=resultRow1[3:end]
 
     @setObjective(modelIdent, Min, sum(errorRow2'errorRow2))
     solve(modelIdent)
     resultRow2=getValue(row2)
     A[2,:]=resultRow2[1:2]
-    E[2]=resultRow2[3]
+    E[2,:]=resultRow2[3:end]
     A, E
 end
