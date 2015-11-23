@@ -79,7 +79,7 @@
     </property>
     <property name="_vergilZoomFactor" class="ptolemy.data.expr.ExpertParameter" value="0.8073470802287299">
     </property>
-    <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{128.1169299450554, 172.12268200549426}">
+    <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{128.11692994505518, 172.12268200549426}">
     </property>
     <entity name="SystemCommand" class="lbnl.actor.lib.SystemCommand">
         <property name="programName" class="ptolemy.data.expr.FileParameter" value="python">
@@ -90,14 +90,12 @@
         </property>
         <port name="numZones" class="ptolemy.actor.TypedIOPort">
             <property name="input"/>
-            <property name="defaultValue" class="ptolemy.data.expr.Parameter">
-            </property>
         </port>
     </entity>
     <entity name="String2Elements" class="ptolemy.actor.TypedCompositeActor">
         <property name="_location" class="ptolemy.kernel.util.Location" value="[-95.0, 70.0]">
         </property>
-        <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute" value="{bounds={36, 115, 1393, 771}, maximized=false}">
+        <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute" value="{bounds={0, 62, 1393, 771}, maximized=false}">
         </property>
         <property name="_vergilSize" class="ptolemy.actor.gui.SizeAttribute" value="[1179, 682]">
         </property>
@@ -120,6 +118,13 @@
         <port name="waterFlowrate" class="ptolemy.actor.TypedIOPort">
             <property name="output"/>
             <property name="_location" class="ptolemy.kernel.util.Location" value="[510.0, 400.0]">
+            </property>
+            <property name="_showName" class="ptolemy.data.expr.SingletonParameter" value="false">
+            </property>
+        </port>
+        <port name="mode" class="ptolemy.actor.TypedIOPort">
+            <property name="output"/>
+            <property name="_location" class="ptolemy.kernel.util.Location" value="[520.0, 515.0]">
             </property>
             <property name="_showName" class="ptolemy.data.expr.SingletonParameter" value="false">
             </property>
@@ -154,6 +159,12 @@
             <property name="_location" class="ptolemy.kernel.util.Location" value="[360.0, 400.0]">
             </property>
         </entity>
+        <entity name="mode" class="ptolemy.actor.lib.ArrayElement">
+            <property name="index" class="ptolemy.actor.parameters.PortParameter" value="3">
+            </property>
+            <property name="_location" class="ptolemy.kernel.util.Location" value="[360.0, 515.0]">
+            </property>
+        </entity>
         <relation name="relation" class="ptolemy.actor.TypedIORelation">
             <property name="width" class="ptolemy.data.expr.Parameter" value="-1">
             </property>
@@ -166,15 +177,20 @@
         </relation>
         <relation name="relation3" class="ptolemy.actor.TypedIORelation">
         </relation>
+        <relation name="relation5" class="ptolemy.actor.TypedIORelation">
+        </relation>
         <link port="InputString" relation="relation2"/>
         <link port="waterTemperature" relation="relation4"/>
         <link port="waterFlowrate" relation="relation3"/>
+        <link port="mode" relation="relation5"/>
         <link port="Expression.output" relation="relation"/>
         <link port="Expression.input" relation="relation2"/>
         <link port="getWaterTemperature.input" relation="relation"/>
         <link port="getWaterTemperature.output" relation="relation4"/>
         <link port="get water flowrate.input" relation="relation"/>
         <link port="get water flowrate.output" relation="relation3"/>
+        <link port="mode.input" relation="relation"/>
+        <link port="mode.output" relation="relation5"/>
     </entity>
     <entity name="StringToDouble" class="ptolemy.actor.lib.conversions.StringToDouble">
         <property name="_location" class="ptolemy.kernel.util.Location" value="[100.0, 90.0]">
@@ -187,76 +203,44 @@
     <entity name="SystemCommand2" class="lbnl.actor.lib.SystemCommand">
         <property name="programName" class="ptolemy.data.expr.FileParameter" value="python">
         </property>
-        <property name="programArguments" class="ptolemy.data.expr.Parameter" value="&quot;UploadSimTosMAP.py $AC24Elec $AC25Elec $TimeStamp&quot;">
+        <property name="programArguments" class="ptolemy.data.expr.Parameter" value="&quot;dataGather.py $mode $numZones $slabTemperature $roomTemperature $disturbance&quot;">
         </property>
-        <property name="_location" class="ptolemy.kernel.util.Location" value="[695.0, 55.0]">
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[710.0, 135.0]">
         </property>
-        <port name="AC24Elec" class="ptolemy.actor.TypedIOPort">
+        <port name="slabTemperature" class="ptolemy.actor.TypedIOPort">
             <property name="input"/>
             <property name="_type" class="ptolemy.actor.TypeAttribute" value="double">
             </property>
         </port>
-        <port name="AC25Elec" class="ptolemy.actor.TypedIOPort">
+        <port name="roomTemperature" class="ptolemy.actor.TypedIOPort">
             <property name="input"/>
             <property name="_type" class="ptolemy.actor.TypeAttribute" value="double">
             </property>
         </port>
-        <port name="TimeStamp" class="ptolemy.actor.TypedIOPort">
+        <port name="mode" class="ptolemy.actor.TypedIOPort">
             <property name="input"/>
             <property name="_type" class="ptolemy.actor.TypeAttribute" value="double">
             </property>
         </port>
-    </entity>
-    <entity name="Expression2" class="ptolemy.actor.lib.Expression">
-        <property name="expression" class="ptolemy.kernel.util.StringAttribute" value="input/1000">
-        </property>
-        <property name="_icon" class="ptolemy.vergil.icon.BoxedValueIcon">
-            <property name="attributeName" class="ptolemy.kernel.util.StringAttribute" value="expression">
-            </property>
-            <property name="displayWidth" class="ptolemy.data.expr.Parameter" value="60">
-            </property>
-            <property name="displayHeight" class="ptolemy.data.expr.Parameter" value="10">
-            </property>
-        </property>
-        <property name="_location" class="ptolemy.kernel.util.Location" value="[555.0, 25.0]">
-        </property>
-        <port name="input" class="ptolemy.actor.TypedIOPort">
+        <port name="numZones" class="ptolemy.actor.TypedIOPort">
             <property name="input"/>
+            <property name="defaultValue" class="ptolemy.data.expr.Parameter">
+            </property>
+            <property name="_type" class="ptolemy.actor.TypeAttribute" value="[double]">
+            </property>
         </port>
-    </entity>
-    <entity name="Expression3" class="ptolemy.actor.lib.Expression">
-        <property name="expression" class="ptolemy.kernel.util.StringAttribute" value="input/1000">
-        </property>
-        <property name="_icon" class="ptolemy.vergil.icon.BoxedValueIcon">
-            <property name="attributeName" class="ptolemy.kernel.util.StringAttribute" value="expression">
-            </property>
-            <property name="displayWidth" class="ptolemy.data.expr.Parameter" value="60">
-            </property>
-            <property name="displayHeight" class="ptolemy.data.expr.Parameter" value="10">
-            </property>
-        </property>
-        <property name="_location" class="ptolemy.kernel.util.Location" value="[555.0, 80.0]">
-        </property>
-        <port name="input" class="ptolemy.actor.TypedIOPort">
+        <port name="disturbance" class="ptolemy.actor.TypedIOPort">
             <property name="input"/>
+            <property name="defaultValue" class="ptolemy.data.expr.Parameter">
+            </property>
+            <property name="_type" class="ptolemy.actor.TypeAttribute" value="[double]">
+            </property>
         </port>
-    </entity>
-    <entity name="DelayStart" class="ptolemy.actor.lib.DelayStart">
-        <property name="beginTime" class="ptolemy.data.expr.StringParameter" value="12:13 pm">
-        </property>
-        <property name="_icon" class="ptolemy.vergil.icon.BoxedValueIcon">
-            <property name="attributeName" class="ptolemy.kernel.util.StringAttribute" value="beginTime">
-            </property>
-            <property name="displayWidth" class="ptolemy.data.expr.Parameter" value="40">
-            </property>
-        </property>
-        <property name="_location" class="ptolemy.kernel.util.Location" value="[-330.0, -65.0]">
-        </property>
     </entity>
     <entity name="B90FMU_7_9_" class="ptolemy.actor.lib.fmi.FMUImport">
         <property name="fmuFile" class="ptolemy.data.expr.FileParameter" value="C:\Users\xpang\Documents\KETEP_Demo\B90FMU_7_9_15.fmu">
         </property>
-        <property name="_location" class="ptolemy.kernel.util.Location" value="[305.0, 70.0]">
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[325.0, 65.0]">
         </property>
         <port name="waterTemperature" class="ptolemy.actor.TypedIOPort">
             <property name="input"/>
@@ -280,7 +264,7 @@
                 </property>
             </property>
         </port>
-        <port name="AC24Elec" class="ptolemy.actor.TypedIOPort">
+        <port name="slabTemperature" class="ptolemy.actor.TypedIOPort">
             <property name="output"/>
             <property name="_type" class="ptolemy.actor.TypeAttribute" value="double">
                 <property name="style" class="ptolemy.actor.gui.style.HiddenStyle">
@@ -293,7 +277,7 @@
                 </property>
             </property>
         </port>
-        <port name="AC25Elec" class="ptolemy.actor.TypedIOPort">
+        <port name="roomTemperature" class="ptolemy.actor.TypedIOPort">
             <property name="output"/>
             <property name="_type" class="ptolemy.actor.TypeAttribute" value="double">
                 <property name="style" class="ptolemy.actor.gui.style.HiddenStyle">
@@ -304,6 +288,11 @@
             <property name="_showName" class="ptolemy.data.expr.SingletonParameter" value="true">
                 <property name="style" class="ptolemy.actor.gui.style.HiddenStyle">
                 </property>
+            </property>
+        </port>
+        <port name="disturbance" class="ptolemy.actor.TypedIOPort">
+            <property name="output"/>
+            <property name="defaultValue" class="ptolemy.data.expr.Parameter">
             </property>
         </port>
     </entity>
@@ -315,22 +304,16 @@
             <property name="displayWidth" class="ptolemy.data.expr.Parameter" value="60">
             </property>
         </property>
-        <property name="_location" class="ptolemy.kernel.util.Location" value="[-385.0, 70.0]">
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[-435.0, 215.0]">
+        </property>
+    </entity>
+    <entity name="StringToDouble3" class="ptolemy.actor.lib.conversions.StringToDouble">
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[100.0, 145.0]">
         </property>
     </entity>
     <relation name="relation" class="ptolemy.actor.TypedIORelation">
     </relation>
     <relation name="relation5" class="ptolemy.actor.TypedIORelation">
-    </relation>
-    <relation name="relation15" class="ptolemy.actor.TypedIORelation">
-    </relation>
-    <relation name="relation24" class="ptolemy.actor.TypedIORelation">
-    </relation>
-    <relation name="relation26" class="ptolemy.actor.TypedIORelation">
-    </relation>
-    <relation name="relation27" class="ptolemy.actor.TypedIORelation">
-    </relation>
-    <relation name="relation2" class="ptolemy.actor.TypedIORelation">
     </relation>
     <relation name="relation3" class="ptolemy.actor.TypedIORelation">
     </relation>
@@ -338,24 +321,43 @@
     </relation>
     <relation name="relation6" class="ptolemy.actor.TypedIORelation">
     </relation>
+    <relation name="relation7" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation9" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation10" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation11" class="ptolemy.actor.TypedIORelation">
+        <property name="width" class="ptolemy.data.expr.Parameter" value="-1">
+        </property>
+        <vertex name="vertex1" value="[-335.0, 215.0]">
+        </vertex>
+    </relation>
+    <relation name="relation2" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation8" class="ptolemy.actor.TypedIORelation">
+    </relation>
     <link port="SystemCommand.output" relation="relation"/>
-    <link port="SystemCommand.numZones" relation="relation2"/>
+    <link port="SystemCommand.numZones" relation="relation11"/>
     <link port="String2Elements.InputString" relation="relation"/>
     <link port="String2Elements.waterTemperature" relation="relation5"/>
     <link port="String2Elements.waterFlowrate" relation="relation3"/>
+    <link port="String2Elements.mode" relation="relation7"/>
     <link port="StringToDouble.input" relation="relation3"/>
     <link port="StringToDouble.output" relation="relation4"/>
     <link port="StringToDouble2.input" relation="relation5"/>
     <link port="StringToDouble2.output" relation="relation6"/>
-    <link port="SystemCommand2.AC24Elec" relation="relation15"/>
-    <link port="SystemCommand2.AC25Elec" relation="relation24"/>
-    <link port="Expression2.output" relation="relation15"/>
-    <link port="Expression2.input" relation="relation26"/>
-    <link port="Expression3.output" relation="relation24"/>
-    <link port="Expression3.input" relation="relation27"/>
+    <link port="SystemCommand2.slabTemperature" relation="relation9"/>
+    <link port="SystemCommand2.roomTemperature" relation="relation10"/>
+    <link port="SystemCommand2.mode" relation="relation8"/>
+    <link port="SystemCommand2.numZones" relation="relation2"/>
+    <link port="SystemCommand2.disturbance" relation="relation11"/>
     <link port="B90FMU_7_9_.waterTemperature" relation="relation6"/>
     <link port="B90FMU_7_9_.waterFlowrate" relation="relation4"/>
-    <link port="B90FMU_7_9_.AC24Elec" relation="relation26"/>
-    <link port="B90FMU_7_9_.AC25Elec" relation="relation27"/>
-    <link port="numZones.output" relation="relation2"/>
+    <link port="B90FMU_7_9_.slabTemperature" relation="relation9"/>
+    <link port="B90FMU_7_9_.roomTemperature" relation="relation10"/>
+    <link port="B90FMU_7_9_.disturbance" relation="relation8"/>
+    <link port="numZones.output" relation="relation11"/>
+    <link port="StringToDouble3.input" relation="relation7"/>
+    <link port="StringToDouble3.output" relation="relation2"/>
 </entity>
