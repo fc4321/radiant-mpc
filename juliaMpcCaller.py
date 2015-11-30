@@ -21,8 +21,12 @@ pyjulia.eval('b = {0}'.format(systemConstraints['b']))
 pyjulia.eval('x_max = {0}'.format(systemConstraints['x_max']))
 pyjulia.eval('x_min = {0}'.format(systemConstraints['x_min']))
 pyjulia.eval('rho = {0}'.format(rho['rho']))
+pyjulia.eval('x0 = zeros(2,{0})'.format(numZones))
 
 for zone in range(numZones):
+    slabTemp = sys.argv[zone*2]
+    zoneTemp = sys.argv[zone*2 + 1]
+    pyjulia.eval('x0[:,zone] = [{0};{1}]'.format(slabTemp,zoneTemp))
     pyjulia.eval('systemMatrices = zeros(2,2,3)')
     pyjulia.eval('systemMatrices[:,:,1] = {0}'.format(matricesCooling[A + str(zone)]))
     pyjulia.eval('systemMatrices[:,:,2] = {0}'.format(matricesCoasting[A + str(zone)]))
@@ -33,3 +37,10 @@ for zone in range(numZones):
     pyjulia.eval('disturbanceMatrices[:,:,2] = {0}'.format(matricesCoasting[E + str(zone)]))
     pyjulia.eval('disturbanceMatrices[:,:,3] = {0}'.format(matricesHeating[E + str(zone)]))
     pyjulia.eval('E[{0}] = disturbanceMatrices')
+
+pyjulia.eval('modes = finiteHorizonControllerMultiZone(A,E,x0,H,b,d,x_max,x_min,rho)')
+for zone in range(numZones):
+    
+    output = output + str(waterFlowRate) + ' ' + str(waterTemperature) + ' '
+output = output[0:-1]
+sys.stdout.write(output)

@@ -12,7 +12,7 @@ function finiteHorizonControllerMultiZone(A,E,x0,H,b,d,x_max,x_min,rho)
     for system = 1:length(A)
         M = zeros(size(A[system],1),size(modes,1));
         m = zeros(size(A[system],1),size(modes,1));
-        @addConstraint(model, x[:,1, system] .== x0)
+        @addConstraint(model, x[:,1, system] .== x0[:,system])
         @addConstraint(model, coolingOn .>= modes[1,:,system])
         @addConstraint(model, heatingOn .>= modes[2,:,system])
         for time = 1:N
