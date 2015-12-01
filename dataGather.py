@@ -2,22 +2,26 @@ import h5py
 import sys
 
 systemMode = sys.argv[1]
+if systemMode == 1:
+    systemMode = 'Cooling'
+elif systeMode == 2:
+    systemMode = 'Coasting'
+else:
+    systemMode = 'Heating'
+
+matricesData = h5py.File('matrices' + systemMode + 'Data.hdf5','a')
 numZones = sys.argv[2]
 newDataX1 = dict()
 newDataX2 = dict()
 newDataD = dict()
-
-for zone in range(numZones):
-    newDataX1[zone] = sys.argv[3+zone*3]
-    newDataX2[zone] = sys.argv[4+zone*3]
-    newDataD[zone] = sys.argv[5+zone*3]
-
-matricesData = h5py.File('matrices' + systemMode + 'Data.hdf5','a')
 x1 = dict()
 x2 = dict()
 d = dict()
 
 for zone in range(numZones):
+    newDataX1[zone] = sys.argv[3+zone*3]
+    newDataX2[zone] = sys.argv[4+zone*3]
+    newDataD[zone] = sys.argv[5+zone*3]
     x1[zone] = matricesData['x1' + str(zone)]
     x2[zone] = matricesData['x2' + str(zone)]
     d[zone] = matricesData['d' + str(zone)]

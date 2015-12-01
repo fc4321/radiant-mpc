@@ -5,12 +5,12 @@ numZones = sys.arg[2]
 
 if time < 3*60*60:
     waterFlowRate = 100
-    waterTemperature = 100
+    waterTemperature = 32
     mode = 1
 else:
     waterFlowRate = 0
     waterTemperature = 32
-    mode = 0
+    mode = 2
 
 output = ''
 for zone in range(numZones):
