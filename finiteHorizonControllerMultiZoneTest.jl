@@ -3,14 +3,25 @@ using Cbc
 
 include("finiteHorizonControllerMultiZone.jl")
 
-A = {1,1,1}
-E = {1,0,-1};
-x0=[2]
+systemModes = ones(2,2,3);
+systemModes[:,:,1] = eye(2);
+systemModes[:,:,2] = eye(2);
+systemModes[:,:,3] = eye(2);
+A = {systemModes}
+disturbanceModes = ones(2,1,3);
+disturbanceModes[:,1,2] = zeros(2,1);
+disturbanceModes[:,1,3] = -ones(2,1);
+E = {disturbanceModes};
+x0=[3;3];
 
-H = [1;-1];
-b = [5;5];
+H = [eye(2);-eye(2)];
+b = 5*ones(4,1);
 
-N= 2;
+N= 5;
 d = ones(1,N,1);
 
-modes = finiteHorizonControllerMultiZone(A,E,x0,H,b,d,1,-1,1)
+x_max = 1;
+x_min = -1;
+rho = 1;
+modes = finiteHorizonControllerMultiZone(A,E,x0,H,b,d,x_max,x_min,rho);
+println(modes)

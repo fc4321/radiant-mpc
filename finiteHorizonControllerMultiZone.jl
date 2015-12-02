@@ -14,12 +14,12 @@ function finiteHorizonControllerMultiZone(A,E,x0,H,b,d,x_max,x_min,rho)
         m = zeros(size(A[system],1),size(modes,1));
         @addConstraint(model, x[:,1, system] .== x0[:,system])
         @addConstraint(model, coolingOn .>= modes[1,:,system])
-        @addConstraint(model, heatingOn .>= modes[2,:,system])
+        @addConstraint(model, heatingOn .>= modes[3,:,system])
         for time = 1:N
             @addConstraint(model, H*x[:,time+1, system] .<= b)
             @addConstraint(model, sum(modes[:,time, system]) == 1)
             for mode = 1:size(modes,1)
-                for index = 1:size(A,1)
+                for index = 1:size(A[system],1)
                     @setObjective(model, Min, sum(A[system][index,:,mode]*x[:,time+1,system] + E[system][index,:,mode]*d[:,time,system]))
                     solve(model)
                     m[index,mode] = getObjectiveValue(model)
@@ -30,7 +30,7 @@ function finiteHorizonControllerMultiZone(A,E,x0,H,b,d,x_max,x_min,rho)
             end
 
             for mode = 1:size(modes,1)
-                @addConstraint(model, -M[:,mode]* modes[mode,time,system] + z[:,mode,time,system] .<= 0)
+                @addConstraint(model, -M[:,mode] * modes[mode,time,system] + z[:,mode,time,system] .<= 0)
                 @addConstraint(model, m[:,mode] * (1-modes[mode,time,system]) + z[:,mode,time,system] .<= A[system][:,:,mode]*x[:,time,system]+E[system][:,:,mode]*d[:,time,system])
                 @addConstraint(model, m[:,mode] * modes[mode,time,system] - z[:,mode,time,system] .<= 0)
                 @addConstraint(model, -M[:,mode] * (1-modes[mode,time,system]) - z[:,mode,time,system] .<= -A[system][:,:,mode]*x[:,time,system]-E[system][:,:,mode]*d[:,time,system])
@@ -38,13 +38,12 @@ function finiteHorizonControllerMultiZone(A,E,x0,H,b,d,x_max,x_min,rho)
 
             @addConstraint(model, x[:,time+1,system] .== z[:,1,time,system] + z[:,2,time,system] + z[:,3,time,system])
             @addConstraint(model, slacks[time,system] >= 0)
-            @addConstraint(model, slacks[time,system] >= x[2,time,system] - x_min)
-            @addConstraint(model, slacks[time,system] >= x_max - x[2,time,system])
+            @addConstraint(model, slacks[time,system] >= x_min - x[2,time,system])
+            @addConstraint(model, slacks[time,system] >= x[2,time,system] - x_max)
         end
     end
     @addConstraint(model, coolingOn + heatingOn <= 1)
-    @setObjective(model, Min, sum(slacks)+ rho * sum(modes[1:2,:,:]) + rho * coolingOn + rho * heatingOn)
-
+    @setObjective(model, Min, sum(slacks)+ rho * sum(modes[[1,3],:,:]) + rho * coolingOn + rho * heatingOn)
     solve(model)
 
     getValue(modes)
