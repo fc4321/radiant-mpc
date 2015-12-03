@@ -5,8 +5,8 @@ function identMatrices(x1,x2,d)
     E=zeros(2,size(d,2))
 
     modelIdent = Model(solver = IpoptSolver())
-    @defVar(modelIdent, row1[1:2+size(d,2)])
-    @defVar(modelIdent, row2[1:2+size(d,2)])
+    @defVar(modelIdent, row1[1:2+size(d,2)]>=0)
+    @defVar(modelIdent, row2[1:2+size(d,2)]>=0)
 
     H = [x1 x2 d]
 
