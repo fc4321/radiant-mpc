@@ -12,7 +12,7 @@ disturbanceModes = ones(2,1,3);
 disturbanceModes[:,1,2] = zeros(2,1);
 disturbanceModes[:,1,3] = -ones(2,1);
 E = {disturbanceModes};
-x0=[3;3];
+x0=[-3;-3];
 
 H = [eye(2);-eye(2)];
 b = 5*ones(4,1);
