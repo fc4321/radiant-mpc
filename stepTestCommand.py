@@ -1,7 +1,7 @@
 import sys
 
-time = sys.argv[1]
-numZones = sys.arg[2]
+time = int(sys.argv[1])
+numZones = int(sys.argv[2])
 
 if time < 3*60*60:
     waterFlowRate = 100
@@ -15,5 +15,4 @@ else:
 output = ''
 for zone in range(numZones):
     output = output + str(waterFlowRate) + ' ' + str(waterTemperature) + ' '
-output = output[0:-1]
-sys.stdout.write(output.append(mode))
+sys.stdout.write(output + str(mode))
