@@ -1,15 +1,15 @@
 import sys
 
-time = int(sys.argv[1])
+time = float(sys.argv[1])
 numZones = int(sys.argv[2])
 
 if time < 3*60*60:
-    waterFlowRate = 100
-    waterTemperature = 32
+    waterFlowRate = 0.504
+    waterTemperature = 293.15
     mode = 1
 else:
     waterFlowRate = 0
-    waterTemperature = 32
+    waterTemperature = 293.15
     mode = 2
 
 output = ''

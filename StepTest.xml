@@ -56,7 +56,7 @@
         <property name="_location" class="ptolemy.kernel.util.Location" value="[-215.0, -120.0]">
         </property>
     </property>
-    <property name="endTime" class="ptolemy.data.expr.Parameter" value="86400">
+    <property name="endTime" class="ptolemy.data.expr.Parameter" value="21600">
         <property name="_icon" class="ptolemy.vergil.icon.ValueIcon">
             <property name="_color" class="ptolemy.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}">
             </property>
@@ -77,9 +77,9 @@
     </property>
     <property name="_vergilSize" class="ptolemy.actor.gui.SizeAttribute" value="[1066, 687]">
     </property>
-    <property name="_vergilZoomFactor" class="ptolemy.data.expr.ExpertParameter" value="1.0091838502859127">
+    <property name="_vergilZoomFactor" class="ptolemy.data.expr.ExpertParameter" value="1.0091838502859134">
     </property>
-    <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{193.1169299450545, -20.542131696429294}">
+    <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{448.11692994505535, -72.54213169642969}">
     </property>
     <entity name="SystemCommand" class="lbnl.actor.lib.SystemCommand">
         <property name="programName" class="ptolemy.data.expr.FileParameter" value="python">
@@ -205,7 +205,7 @@
         </property>
         <property name="programArguments" class="ptolemy.data.expr.Parameter" value="&quot;dataGather.py $mode $numZones $slabTemperature $roomTemperature $disturbance&quot;">
         </property>
-        <property name="_location" class="ptolemy.kernel.util.Location" value="[710.0, 200.0]">
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[940.0, 115.0]">
         </property>
         <port name="exitValue" class="ptolemy.actor.TypedIOPort">
             <property name="output"/>
@@ -273,10 +273,88 @@
         <property name="_location" class="ptolemy.kernel.util.Location" value="[90.0, 115.0]">
         </property>
     </entity>
+    <entity name="Const" class="ptolemy.actor.lib.Const">
+        <property name="value" class="ptolemy.data.expr.Parameter" value="293.15">
+        </property>
+        <doc>Create a constant sequence.</doc>
+        <property name="_icon" class="ptolemy.vergil.icon.BoxedValueIcon">
+            <property name="attributeName" class="ptolemy.kernel.util.StringAttribute" value="value">
+            </property>
+            <property name="displayWidth" class="ptolemy.data.expr.Parameter" value="60">
+            </property>
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[110.0, -175.0]">
+        </property>
+    </entity>
+    <entity name="Const3" class="ptolemy.actor.lib.Const">
+        <property name="value" class="ptolemy.data.expr.Parameter" value=".06">
+        </property>
+        <doc>Create a constant sequence.</doc>
+        <property name="_icon" class="ptolemy.vergil.icon.BoxedValueIcon">
+            <property name="attributeName" class="ptolemy.kernel.util.StringAttribute" value="value">
+            </property>
+            <property name="displayWidth" class="ptolemy.data.expr.Parameter" value="60">
+            </property>
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[180.0, -95.0]">
+        </property>
+    </entity>
+    <entity name="Expression" class="ptolemy.actor.lib.Expression">
+        <property name="expression" class="ptolemy.kernel.util.StringAttribute" value="(slab1+slab2+slab3+slab4)/4">
+        </property>
+        <property name="_icon" class="ptolemy.vergil.icon.BoxedValueIcon">
+            <property name="attributeName" class="ptolemy.kernel.util.StringAttribute" value="expression">
+            </property>
+            <property name="displayWidth" class="ptolemy.data.expr.Parameter" value="60">
+            </property>
+            <property name="displayHeight" class="ptolemy.data.expr.Parameter" value="10">
+            </property>
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[620.0, -135.0]">
+        </property>
+        <port name="slab1" class="ptolemy.actor.TypedIOPort">
+            <property name="input"/>
+        </port>
+        <port name="slab2" class="ptolemy.actor.TypedIOPort">
+            <property name="input"/>
+        </port>
+        <port name="slab3" class="ptolemy.actor.TypedIOPort">
+            <property name="input"/>
+        </port>
+        <port name="slab4" class="ptolemy.actor.TypedIOPort">
+            <property name="input"/>
+        </port>
+    </entity>
+    <entity name="Const2" class="ptolemy.actor.lib.Const">
+        <property name="value" class="ptolemy.data.expr.Parameter" value="0">
+        </property>
+        <doc>Create a constant sequence.</doc>
+        <property name="_icon" class="ptolemy.vergil.icon.BoxedValueIcon">
+            <property name="attributeName" class="ptolemy.kernel.util.StringAttribute" value="value">
+            </property>
+            <property name="displayWidth" class="ptolemy.data.expr.Parameter" value="60">
+            </property>
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[100.0, -120.0]">
+        </property>
+    </entity>
+    <entity name="Const4" class="ptolemy.actor.lib.Const">
+        <property name="value" class="ptolemy.data.expr.Parameter" value="0">
+        </property>
+        <doc>Create a constant sequence.</doc>
+        <property name="_icon" class="ptolemy.vergil.icon.BoxedValueIcon">
+            <property name="attributeName" class="ptolemy.kernel.util.StringAttribute" value="value">
+            </property>
+            <property name="displayWidth" class="ptolemy.data.expr.Parameter" value="60">
+            </property>
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[155.0, -145.0]">
+        </property>
+    </entity>
     <entity name="Flex_X3AWithRadiantFloor" class="ptolemy.actor.lib.fmi.FMUImport">
         <property name="fmuFile" class="ptolemy.data.expr.FileParameter" value="/home/frank/flexlab-slab/Flex/Flex_X3AWithRadiantFloor.fmu">
         </property>
-        <property name="_location" class="ptolemy.kernel.util.Location" value="[270.0, -100.0]">
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[365.0, -110.0]">
         </property>
         <property name="latitude" class="ptolemy.data.expr.Parameter" value="0.656593">
         </property>
@@ -29839,6 +29917,18 @@
             </property>
         </port>
     </entity>
+    <entity name="Discard" class="ptolemy.actor.lib.Discard">
+        <property name="_hideName" class="ptolemy.data.expr.SingletonParameter" value="true">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[540.0, 0.0]">
+        </property>
+        <port name="input" class="ptolemy.actor.TypedIOPort">
+            <property name="input"/>
+            <property name="multiport"/>
+            <property name="_cardinal" class="ptolemy.kernel.util.StringAttribute" value="NORTH">
+            </property>
+        </port>
+    </entity>
     <relation name="relation" class="ptolemy.actor.TypedIORelation">
     </relation>
     <relation name="relation5" class="ptolemy.actor.TypedIORelation">
@@ -29853,8 +29943,6 @@
         <vertex name="vertex1" value="[-335.0, 215.0]">
         </vertex>
     </relation>
-    <relation name="relation8" class="ptolemy.actor.TypedIORelation">
-    </relation>
     <relation name="relation2" class="ptolemy.actor.TypedIORelation">
     </relation>
     <relation name="relation10" class="ptolemy.actor.TypedIORelation">
@@ -29863,11 +29951,49 @@
         <vertex name="vertex1" value="[170.0, -65.0]">
         </vertex>
     </relation>
-    <relation name="relation9" class="ptolemy.actor.TypedIORelation">
+    <relation name="relation12" class="ptolemy.actor.TypedIORelation">
+        <property name="width" class="ptolemy.data.expr.Parameter" value="-1">
+        </property>
+        <vertex name="vertex1" value="[180.0, -175.0]">
+        </vertex>
+    </relation>
+    <relation name="relation14" class="ptolemy.actor.TypedIORelation">
+        <property name="width" class="ptolemy.data.expr.Parameter" value="-1">
+        </property>
+        <vertex name="vertex1" value="[165.0, -120.0]">
+        </vertex>
+    </relation>
+    <relation name="relation18" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation6" class="ptolemy.actor.TypedIORelation">
     </relation>
     <relation name="relation13" class="ptolemy.actor.TypedIORelation">
     </relation>
     <relation name="relation4" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation15" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation9" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation17" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation16" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation8" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation20" class="ptolemy.actor.TypedIORelation">
+        <property name="width" class="ptolemy.data.expr.Parameter" value="-1">
+        </property>
+        <vertex name="vertex1" value="[210.0, -145.0]">
+        </vertex>
+    </relation>
+    <relation name="relation19" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation21" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation22" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation23" class="ptolemy.actor.TypedIORelation">
     </relation>
     <link port="SystemCommand.output" relation="relation"/>
     <link port="SystemCommand.numZones" relation="relation11"/>
@@ -29879,7 +30005,7 @@
     <link port="StringToDouble.output" relation="relation9"/>
     <link port="StringToDouble2.input" relation="relation5"/>
     <link port="StringToDouble2.output" relation="relation10"/>
-    <link port="SystemCommand2.slabTemperature" relation="relation4"/>
+    <link port="SystemCommand2.slabTemperature" relation="relation18"/>
     <link port="SystemCommand2.roomTemperature" relation="relation8"/>
     <link port="SystemCommand2.mode" relation="relation2"/>
     <link port="SystemCommand2.numZones" relation="relation11"/>
@@ -29887,6 +30013,24 @@
     <link port="numZones.output" relation="relation11"/>
     <link port="StringToDouble3.input" relation="relation7"/>
     <link port="StringToDouble3.output" relation="relation2"/>
+    <link port="Const.output" relation="relation12"/>
+    <link port="Const3.output" relation="relation6"/>
+    <link port="Expression.output" relation="relation18"/>
+    <link port="Expression.slab1" relation="relation4"/>
+    <link port="Expression.slab2" relation="relation15"/>
+    <link port="Expression.slab3" relation="relation16"/>
+    <link port="Expression.slab4" relation="relation17"/>
+    <link port="Const2.output" relation="relation14"/>
+    <link port="Const4.output" relation="relation20"/>
+    <link port="Flex_X3AWithRadiantFloor.TNeiRoo" relation="relation12"/>
+    <link port="Flex_X3AWithRadiantFloor.TDryBulOut" relation="relation12"/>
+    <link port="Flex_X3AWithRadiantFloor.HDifHor" relation="relation20"/>
+    <link port="Flex_X3AWithRadiantFloor.HDirNor" relation="relation20"/>
+    <link port="Flex_X3AWithRadiantFloor.qGai_flow_1_" relation="relation14"/>
+    <link port="Flex_X3AWithRadiantFloor.qGai_flow_2_" relation="relation14"/>
+    <link port="Flex_X3AWithRadiantFloor.qGai_flow_3_" relation="relation14"/>
+    <link port="Flex_X3AWithRadiantFloor.mHVAC_flow" relation="relation6"/>
+    <link port="Flex_X3AWithRadiantFloor.THVACSup" relation="relation12"/>
     <link port="Flex_X3AWithRadiantFloor.mSlab_flow_1_" relation="relation10"/>
     <link port="Flex_X3AWithRadiantFloor.mSlab_flow_2_" relation="relation10"/>
     <link port="Flex_X3AWithRadiantFloor.mSlab_flow_3_" relation="relation10"/>
@@ -29894,5 +30038,16 @@
     <link port="Flex_X3AWithRadiantFloor.TSlabIn" relation="relation9"/>
     <link port="Flex_X3AWithRadiantFloor.TRooAir" relation="relation8"/>
     <link port="Flex_X3AWithRadiantFloor.TSlabSur_1_" relation="relation4"/>
+    <link port="Flex_X3AWithRadiantFloor.TSlabSur_2_" relation="relation15"/>
+    <link port="Flex_X3AWithRadiantFloor.TSlabSur_3_" relation="relation16"/>
+    <link port="Flex_X3AWithRadiantFloor.TSlabSur_4_" relation="relation17"/>
     <link port="Flex_X3AWithRadiantFloor.weaBus_TDryBul" relation="relation13"/>
+    <link port="Flex_X3AWithRadiantFloor.weaBus_winDir" relation="relation19"/>
+    <link port="Flex_X3AWithRadiantFloor.weaBus_winSpe" relation="relation21"/>
+    <link port="Flex_X3AWithRadiantFloor.weaBus_lat" relation="relation22"/>
+    <link port="Flex_X3AWithRadiantFloor.weaBus_lon" relation="relation23"/>
+    <link port="Discard.input" relation="relation19"/>
+    <link port="Discard.input" relation="relation21"/>
+    <link port="Discard.input" relation="relation22"/>
+    <link port="Discard.input" relation="relation23"/>
 </entity>
