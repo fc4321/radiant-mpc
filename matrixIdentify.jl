@@ -1,3 +1,28 @@
+using HDF5
+
+systemMode = ARGS[1]
+numZones = ARGS[2]
+
+if systemMode == 1
+    systemMode = "Cooling";
+elseif systemMode == 2
+    systemMode = "Coasting";
+else
+    systemMode = "Heating";
+end
+
+matricesData = h5py.File('matrices' + systemMode + 'Data.hdf5','r')
+matrices = h5py.File('matrices' + systemMode + '.hdf5','w')
+
+for zone = 1:numZones
+    x1 = h5read(string("matrices", systemMode, "Data.hdf5"), string("x1", zone))
+    x2 = h5read(string("matrices", systemMode, "Data.hdf5"), string("x2", zone))
+    d = h5read(string("matrices", systemMode, "Data.hdf5"), string("d", zone))
+    (A, E) = identMatices(x1,x2,d)
+    h5write(string("matrices", systemMode, ".hdf5"), string("A", zone))
+    h5write(string("matrices", systemMode, ".hdf5"), string("E", zone))
+end
+
 function identMatrices(x1,x2,d)
     N = size(d,1)
 
