@@ -1,7 +1,8 @@
 import h5py
 import sys
 
-systemMode = int(sys.argv[1])
+systemMode = float(sys.argv[1])
+systemMode = int(systemMode)
 numZones = int(sys.argv[2])
 
 if systemMode == 1:
