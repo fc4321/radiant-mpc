@@ -79,7 +79,7 @@
     </property>
     <property name="_vergilZoomFactor" class="ptolemy.data.expr.ExpertParameter" value="1.0091838502859134">
     </property>
-    <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{212.3954970810443, 114.56657795329656}">
+    <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{315.39549708104437, 174.5665779532966}">
     </property>
     <entity name="SystemCommand" class="lbnl.actor.lib.SystemCommand">
         <property name="programName" class="ptolemy.data.expr.FileParameter" value="julia">
