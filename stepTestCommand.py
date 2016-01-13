@@ -5,11 +5,11 @@ numZones = int(sys.argv[2])
 
 if time < 3*60*60:
     waterFlowRate = 0.504
-    waterTemperature = 293.15
+    waterTemperature = 283.15
     mode = 1
 else:
     waterFlowRate = 0
-    waterTemperature = 293.15
+    waterTemperature = 283.15
     mode = 2
 
 output = ''
