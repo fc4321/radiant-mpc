@@ -13,16 +13,16 @@
         </property>
         <property name="period" class="ptolemy.data.expr.Parameter" value="timeStep">
         </property>
-        <property name="synchronizeToRealTime" class="ptolemy.data.expr.Parameter" value="true">
+        <property name="synchronizeToRealTime" class="ptolemy.data.expr.Parameter" value="false">
         </property>
         <property name="stopTime" class="ptolemy.data.expr.Parameter" value="endTime">
         </property>
         <property name="beginTime" class="ptolemy.data.expr.Parameter" value="beginTime">
         </property>
-        <property name="_location" class="ptolemy.kernel.util.Location" value="{-325.0, -135.0}">
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[-155.0, -30.0]">
         </property>
     </property>
-    <property name="timeStep" class="ptolemy.data.expr.Parameter" value="60*3">
+    <property name="timeStep" class="ptolemy.data.expr.Parameter" value="60*15">
         <property name="_icon" class="ptolemy.vergil.icon.ValueIcon">
             <property name="_color" class="ptolemy.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}">
             </property>
@@ -36,7 +36,7 @@
         </property>
         <property name="_editorFactory" class="ptolemy.vergil.toolbox.VisibleParameterEditorFactory">
         </property>
-        <property name="_location" class="ptolemy.kernel.util.Location" value="[-215.0, -140.0]">
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[-45.0, -35.0]">
         </property>
     </property>
     <property name="beginTime" class="ptolemy.data.expr.Parameter" value="0">
@@ -53,7 +53,7 @@
         </property>
         <property name="_editorFactory" class="ptolemy.vergil.toolbox.VisibleParameterEditorFactory">
         </property>
-        <property name="_location" class="ptolemy.kernel.util.Location" value="[-215.0, -120.0]">
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[-45.0, -15.0]">
         </property>
     </property>
     <property name="endTime" class="ptolemy.data.expr.Parameter" value="86400">
@@ -70,7 +70,7 @@
         </property>
         <property name="_editorFactory" class="ptolemy.vergil.toolbox.VisibleParameterEditorFactory">
         </property>
-        <property name="_location" class="ptolemy.kernel.util.Location" value="[-215.0, -100.0]">
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[-45.0, 5.0]">
         </property>
     </property>
     <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute" value="{bounds={27, 146, 1253, 682}, maximized=false}">
@@ -79,7 +79,7 @@
     </property>
     <property name="_vergilZoomFactor" class="ptolemy.data.expr.ExpertParameter" value="1.0091838502859134">
     </property>
-    <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{-37.60450291895586, 114.56657795329659}">
+    <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{212.3954970810443, 114.56657795329656}">
     </property>
     <entity name="SystemCommand" class="lbnl.actor.lib.SystemCommand">
         <property name="programName" class="ptolemy.data.expr.FileParameter" value="julia">
@@ -11328,6 +11328,30 @@
         <property name="_location" class="ptolemy.kernel.util.Location" value="[174.312744140625, 52.703857421875]">
         </property>
     </entity>
+    <entity name="Discard" class="ptolemy.actor.lib.Discard">
+        <property name="_hideName" class="ptolemy.data.expr.SingletonParameter" value="true">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[920.0, 275.0]">
+        </property>
+        <port name="input" class="ptolemy.actor.TypedIOPort">
+            <property name="input"/>
+            <property name="multiport"/>
+            <property name="_cardinal" class="ptolemy.kernel.util.StringAttribute" value="NORTH">
+            </property>
+        </port>
+    </entity>
+    <entity name="Discard2" class="ptolemy.actor.lib.Discard">
+        <property name="_hideName" class="ptolemy.data.expr.SingletonParameter" value="true">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[-120.0, 175.0]">
+        </property>
+        <port name="input" class="ptolemy.actor.TypedIOPort">
+            <property name="input"/>
+            <property name="multiport"/>
+            <property name="_cardinal" class="ptolemy.kernel.util.StringAttribute" value="NORTH">
+            </property>
+        </port>
+    </entity>
     <relation name="relation5" class="ptolemy.actor.TypedIORelation">
     </relation>
     <relation name="relation3" class="ptolemy.actor.TypedIORelation">
@@ -11378,7 +11402,23 @@
     </relation>
     <relation name="relation15" class="ptolemy.actor.TypedIORelation">
     </relation>
+    <relation name="relation18" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation19" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation20" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation21" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation22" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation23" class="ptolemy.actor.TypedIORelation">
+    </relation>
+    <relation name="relation24" class="ptolemy.actor.TypedIORelation">
+    </relation>
     <link port="SystemCommand.exitValue" relation="relation"/>
+    <link port="SystemCommand.output" relation="relation23"/>
+    <link port="SystemCommand.error" relation="relation24"/>
     <link port="SystemCommand.numZones" relation="relation11"/>
     <link port="String2Elements.InputString" relation="relation9"/>
     <link port="String2Elements.waterTemperature" relation="relation5"/>
@@ -11387,12 +11427,17 @@
     <link port="StringToDouble.output" relation="relation13"/>
     <link port="StringToDouble2.input" relation="relation5"/>
     <link port="StringToDouble2.output" relation="relation14"/>
+    <link port="SystemCommand2.exitValue" relation="relation18"/>
+    <link port="SystemCommand2.output" relation="relation19"/>
+    <link port="SystemCommand2.error" relation="relation20"/>
     <link port="SystemCommand2.slabTemperature" relation="relation8"/>
     <link port="SystemCommand2.roomTemperature" relation="relation10"/>
     <link port="SystemCommand2.numZones" relation="relation11"/>
     <link port="SystemCommand2.disturbance" relation="relation12"/>
     <link port="numZones.output" relation="relation11"/>
+    <link port="SystemCommand3.exitValue" relation="relation22"/>
     <link port="SystemCommand3.output" relation="relation9"/>
+    <link port="SystemCommand3.error" relation="relation21"/>
     <link port="SystemCommand3.numZones" relation="relation"/>
     <link port="SystemCommand3.trigger" relation="relation11"/>
     <link port="Flex_X3AWithRadiantFloor.TNeiRoo" relation="relation17"/>
@@ -11423,4 +11468,11 @@
     <link port="Const.output" relation="relation16"/>
     <link port="Const2.output" relation="relation17"/>
     <link port="Const3.output" relation="relation15"/>
+    <link port="Discard.input" relation="relation18"/>
+    <link port="Discard.input" relation="relation19"/>
+    <link port="Discard.input" relation="relation20"/>
+    <link port="Discard2.input" relation="relation21"/>
+    <link port="Discard2.input" relation="relation22"/>
+    <link port="Discard2.input" relation="relation23"/>
+    <link port="Discard2.input" relation="relation24"/>
 </entity>
