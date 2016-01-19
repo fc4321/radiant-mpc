@@ -7,10 +7,14 @@ if time < 3*60*60:
     waterFlowRate = 0.504
     waterTemperature = 283.15
     mode = 1
-else:
+elif time < 6*60*60:
     waterFlowRate = 0
     waterTemperature = 283.15
     mode = 2
+else:
+    waterFlowRate = 0.504
+    waterTemperature = 300.15
+    mode = 3
 
 output = ''
 for zone in range(numZones):
