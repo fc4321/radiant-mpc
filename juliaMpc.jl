@@ -48,5 +48,6 @@ for zone = 1:numZones
     output[2 + (zone-1)*2] = waterTemperature
 end
 
-rm("mpcOutput.hdf5")
-h5write("mpcOutput.hdf5", "output", output)
+fid = h5open("mpcOutput.hdf5", "w")
+write(fid, "output", output)
+close(fid)
