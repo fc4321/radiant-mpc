@@ -56,7 +56,7 @@
         <property name="_location" class="ptolemy.kernel.util.Location" value="[-45.0, -15.0]">
         </property>
     </property>
-    <property name="endTime" class="ptolemy.data.expr.Parameter" value="86400">
+    <property name="endTime" class="ptolemy.data.expr.Parameter" value="10800">
         <property name="_icon" class="ptolemy.vergil.icon.ValueIcon">
             <property name="_color" class="ptolemy.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}">
             </property>
@@ -73,20 +73,22 @@
         <property name="_location" class="ptolemy.kernel.util.Location" value="[-45.0, 5.0]">
         </property>
     </property>
-    <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute" value="{bounds={27, 146, 1253, 682}, maximized=false}">
+    <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute" value="{bounds={24, 154, 1256, 674}, maximized=false}">
     </property>
     <property name="_vergilSize" class="ptolemy.actor.gui.SizeAttribute" value="[1039, 565]">
     </property>
-    <property name="_vergilZoomFactor" class="ptolemy.data.expr.ExpertParameter" value="1.0091838502859134">
+    <property name="_vergilZoomFactor" class="ptolemy.data.expr.ExpertParameter" value="0.8073470802287308">
     </property>
-    <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{315.39549708104437, 174.5665779532966}">
+    <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{339.39549708104386, 190.56657795329687}">
     </property>
     <entity name="SystemCommand" class="lbnl.actor.lib.SystemCommand">
         <property name="programName" class="ptolemy.data.expr.FileParameter" value="julia">
         </property>
         <property name="programArguments" class="ptolemy.data.expr.Parameter" value="&quot;juliaMpc.jl $numZones&quot;">
         </property>
-        <property name="_location" class="ptolemy.kernel.util.Location" value="[-355.0, 100.0]">
+        <property name="showConsoleWindow" class="ptolemy.data.expr.Parameter" value="false">
+        </property>
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[-360.0, 100.0]">
         </property>
         <port name="numZones" class="ptolemy.actor.TypedIOPort">
             <property name="input"/>
@@ -95,13 +97,13 @@
     <entity name="String2Elements" class="ptolemy.actor.TypedCompositeActor">
         <property name="_location" class="ptolemy.kernel.util.Location" value="[-55.0, 100.0]">
         </property>
-        <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute" value="{bounds={10, 34, 1393, 799}, maximized=false}">
+        <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute" value="{bounds={0, 85, 1280, 776}, maximized=false}">
         </property>
-        <property name="_vergilSize" class="ptolemy.actor.gui.SizeAttribute" value="[1179, 682]">
+        <property name="_vergilSize" class="ptolemy.actor.gui.SizeAttribute" value="[1053, 663]">
         </property>
         <property name="_vergilZoomFactor" class="ptolemy.data.expr.ExpertParameter" value="0.8">
         </property>
-        <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{77.84798994974881, 348.73963567839195}">
+        <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{223.09798994974886, 360.86463567839195}">
         </property>
         <port name="InputString" class="ptolemy.actor.TypedIOPort">
             <property name="input"/>
@@ -141,13 +143,13 @@
         </entity>
         <entity name="getWaterTemperature" class="ptolemy.actor.lib.ArrayElement">
             <display name="get water temperature&#10;"/>
-            <property name="index" class="ptolemy.actor.parameters.PortParameter" value="1">
+            <property name="index" class="ptolemy.actor.parameters.PortParameter" value="0">
             </property>
             <property name="_location" class="ptolemy.kernel.util.Location" value="[360.0, 270.0]">
             </property>
         </entity>
         <entity name="get water flowrate" class="ptolemy.actor.lib.ArrayElement">
-            <property name="index" class="ptolemy.actor.parameters.PortParameter" value="2">
+            <property name="index" class="ptolemy.actor.parameters.PortParameter" value="1">
             </property>
             <property name="_location" class="ptolemy.kernel.util.Location" value="[360.0, 400.0]">
             </property>
@@ -183,9 +185,11 @@
         </property>
     </entity>
     <entity name="SystemCommand2" class="lbnl.actor.lib.SystemCommand">
-        <property name="programName" class="ptolemy.data.expr.FileParameter" value="python">
+        <property name="programName" class="ptolemy.data.expr.FileParameter" value="julia">
         </property>
-        <property name="programArguments" class="ptolemy.data.expr.Parameter" value="&quot;dataGather.py $mode $numZones $slabTemperature $roomTemperature $disturbance&quot;">
+        <property name="programArguments" class="ptolemy.data.expr.Parameter" value="&quot;dataGather.jl $numZones $slabTemperature $roomTemperature&quot;">
+        </property>
+        <property name="showConsoleWindow" class="ptolemy.data.expr.Parameter" value="false">
         </property>
         <property name="_location" class="ptolemy.kernel.util.Location" value="[830.0, 210.0]">
         </property>
@@ -210,13 +214,6 @@
             <property name="_showName" class="ptolemy.data.expr.SingletonParameter" value="true">
             </property>
         </port>
-        <port name="disturbance" class="ptolemy.actor.TypedIOPort">
-            <property name="input"/>
-            <property name="_type" class="ptolemy.actor.TypeAttribute" value="[double]">
-            </property>
-            <property name="_showName" class="ptolemy.data.expr.SingletonParameter" value="true">
-            </property>
-        </port>
     </entity>
     <entity name="numZones" class="ptolemy.actor.lib.Const">
         <doc>Create a constant sequence.</doc>
@@ -230,17 +227,19 @@
         </property>
     </entity>
     <entity name="SystemCommand3" class="lbnl.actor.lib.SystemCommand">
-        <property name="programName" class="ptolemy.data.expr.FileParameter" value="python">
+        <property name="programName" class="ptolemy.data.expr.FileParameter" value="julia">
         </property>
-        <property name="programArguments" class="ptolemy.data.expr.Parameter" value="&quot;mpcCommand.py $numZones&quot;">
+        <property name="programArguments" class="ptolemy.data.expr.Parameter" value="&quot;mpcCommand.jl $numZones&quot;">
         </property>
-        <property name="_location" class="ptolemy.kernel.util.Location" value="[-190.0, 100.0]">
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[-210.0, 100.0]">
         </property>
-        <port name="numZones" class="ptolemy.actor.TypedIOPort">
-            <property name="input"/>
-        </port>
         <port name="trigger" class="ptolemy.actor.TypedIOPort">
             <property name="input"/>
+        </port>
+        <port name="numZones" class="ptolemy.actor.TypedIOPort">
+            <property name="input"/>
+            <property name="_showName" class="ptolemy.data.expr.SingletonParameter" value="true">
+            </property>
         </port>
     </entity>
     <entity name="Flex_X3AWithRadiantFloor" class="ptolemy.actor.lib.fmi.FMUImport">
@@ -11325,7 +11324,7 @@
             <property name="displayWidth" class="ptolemy.data.expr.Parameter" value="60">
             </property>
         </property>
-        <property name="_location" class="ptolemy.kernel.util.Location" value="[174.312744140625, 52.703857421875]">
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[175.0, 50.0]">
         </property>
     </entity>
     <entity name="Discard" class="ptolemy.actor.lib.Discard">
@@ -11364,8 +11363,6 @@
     </relation>
     <relation name="relation9" class="ptolemy.actor.TypedIORelation">
     </relation>
-    <relation name="relation" class="ptolemy.actor.TypedIORelation">
-    </relation>
     <relation name="relation2" class="ptolemy.actor.TypedIORelation">
     </relation>
     <relation name="relation4" class="ptolemy.actor.TypedIORelation">
@@ -11377,8 +11374,6 @@
     <relation name="relation8" class="ptolemy.actor.TypedIORelation">
     </relation>
     <relation name="relation10" class="ptolemy.actor.TypedIORelation">
-    </relation>
-    <relation name="relation12" class="ptolemy.actor.TypedIORelation">
     </relation>
     <relation name="relation14" class="ptolemy.actor.TypedIORelation">
         <property name="width" class="ptolemy.data.expr.Parameter" value="-1">
@@ -11416,6 +11411,8 @@
     </relation>
     <relation name="relation24" class="ptolemy.actor.TypedIORelation">
     </relation>
+    <relation name="relation" class="ptolemy.actor.TypedIORelation">
+    </relation>
     <link port="SystemCommand.exitValue" relation="relation"/>
     <link port="SystemCommand.output" relation="relation23"/>
     <link port="SystemCommand.error" relation="relation24"/>
@@ -11433,13 +11430,12 @@
     <link port="SystemCommand2.slabTemperature" relation="relation8"/>
     <link port="SystemCommand2.roomTemperature" relation="relation10"/>
     <link port="SystemCommand2.numZones" relation="relation11"/>
-    <link port="SystemCommand2.disturbance" relation="relation12"/>
     <link port="numZones.output" relation="relation11"/>
     <link port="SystemCommand3.exitValue" relation="relation22"/>
     <link port="SystemCommand3.output" relation="relation9"/>
     <link port="SystemCommand3.error" relation="relation21"/>
-    <link port="SystemCommand3.numZones" relation="relation"/>
-    <link port="SystemCommand3.trigger" relation="relation11"/>
+    <link port="SystemCommand3.trigger" relation="relation"/>
+    <link port="SystemCommand3.numZones" relation="relation11"/>
     <link port="Flex_X3AWithRadiantFloor.TNeiRoo" relation="relation17"/>
     <link port="Flex_X3AWithRadiantFloor.TDryBulOut" relation="relation17"/>
     <link port="Flex_X3AWithRadiantFloor.HDifHor" relation="relation16"/>
@@ -11454,7 +11450,6 @@
     <link port="Flex_X3AWithRadiantFloor.mSlab_flow_3_" relation="relation14"/>
     <link port="Flex_X3AWithRadiantFloor.mSlab_flow_4_" relation="relation14"/>
     <link port="Flex_X3AWithRadiantFloor.TSlabIn" relation="relation13"/>
-    <link port="Flex_X3AWithRadiantFloor.weaBus_TDryBul" relation="relation12"/>
     <link port="Flex_X3AWithRadiantFloor.TRooAir" relation="relation10"/>
     <link port="Flex_X3AWithRadiantFloor.TSlabSur_1_" relation="relation2"/>
     <link port="Flex_X3AWithRadiantFloor.TSlabSur_2_" relation="relation4"/>
