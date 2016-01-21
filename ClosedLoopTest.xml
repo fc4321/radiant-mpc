@@ -56,7 +56,7 @@
         <property name="_location" class="ptolemy.kernel.util.Location" value="[-45.0, -15.0]">
         </property>
     </property>
-    <property name="endTime" class="ptolemy.data.expr.Parameter" value="10800">
+    <property name="endTime" class="ptolemy.data.expr.Parameter" value="60*15*3">
         <property name="_icon" class="ptolemy.vergil.icon.ValueIcon">
             <property name="_color" class="ptolemy.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}">
             </property>
@@ -73,13 +73,13 @@
         <property name="_location" class="ptolemy.kernel.util.Location" value="[-45.0, 5.0]">
         </property>
     </property>
-    <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute" value="{bounds={24, 154, 1256, 674}, maximized=false}">
+    <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute" value="{bounds={24, 126, 1256, 674}, maximized=false}">
     </property>
     <property name="_vergilSize" class="ptolemy.actor.gui.SizeAttribute" value="[1039, 565]">
     </property>
     <property name="_vergilZoomFactor" class="ptolemy.data.expr.ExpertParameter" value="0.8073470802287308">
     </property>
-    <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{339.39549708104386, 190.56657795329687}">
+    <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{450.395497081044, 109.56657795329676}">
     </property>
     <entity name="SystemCommand" class="lbnl.actor.lib.SystemCommand">
         <property name="programName" class="ptolemy.data.expr.FileParameter" value="julia">
@@ -95,7 +95,7 @@
         </port>
     </entity>
     <entity name="String2Elements" class="ptolemy.actor.TypedCompositeActor">
-        <property name="_location" class="ptolemy.kernel.util.Location" value="[-55.0, 100.0]">
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[-50.0, 100.0]">
         </property>
         <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute" value="{bounds={0, 85, 1280, 776}, maximized=false}">
         </property>
@@ -209,8 +209,6 @@
         </port>
         <port name="numZones" class="ptolemy.actor.TypedIOPort">
             <property name="input"/>
-            <property name="_type" class="ptolemy.actor.TypeAttribute" value="[double]">
-            </property>
             <property name="_showName" class="ptolemy.data.expr.SingletonParameter" value="true">
             </property>
         </port>
@@ -231,7 +229,7 @@
         </property>
         <property name="programArguments" class="ptolemy.data.expr.Parameter" value="&quot;mpcCommand.jl $numZones&quot;">
         </property>
-        <property name="_location" class="ptolemy.kernel.util.Location" value="[-210.0, 100.0]">
+        <property name="_location" class="ptolemy.kernel.util.Location" value="[-220.0, 100.0]">
         </property>
         <port name="trigger" class="ptolemy.actor.TypedIOPort">
             <property name="input"/>
@@ -11371,10 +11369,6 @@
     </relation>
     <relation name="relation7" class="ptolemy.actor.TypedIORelation">
     </relation>
-    <relation name="relation8" class="ptolemy.actor.TypedIORelation">
-    </relation>
-    <relation name="relation10" class="ptolemy.actor.TypedIORelation">
-    </relation>
     <relation name="relation14" class="ptolemy.actor.TypedIORelation">
         <property name="width" class="ptolemy.data.expr.Parameter" value="-1">
         </property>
@@ -11413,6 +11407,18 @@
     </relation>
     <relation name="relation" class="ptolemy.actor.TypedIORelation">
     </relation>
+    <relation name="relation12" class="ptolemy.actor.TypedIORelation">
+        <property name="width" class="ptolemy.data.expr.Parameter" value="-1">
+        </property>
+        <vertex name="vertex1" value="{705.0, 130.0}">
+        </vertex>
+    </relation>
+    <relation name="relation8" class="ptolemy.actor.TypedIORelation">
+        <property name="width" class="ptolemy.data.expr.Parameter" value="-1">
+        </property>
+        <vertex name="vertex1" value="{595.0, 125.0}">
+        </vertex>
+    </relation>
     <link port="SystemCommand.exitValue" relation="relation"/>
     <link port="SystemCommand.output" relation="relation23"/>
     <link port="SystemCommand.error" relation="relation24"/>
@@ -11427,8 +11433,8 @@
     <link port="SystemCommand2.exitValue" relation="relation18"/>
     <link port="SystemCommand2.output" relation="relation19"/>
     <link port="SystemCommand2.error" relation="relation20"/>
-    <link port="SystemCommand2.slabTemperature" relation="relation8"/>
-    <link port="SystemCommand2.roomTemperature" relation="relation10"/>
+    <link port="SystemCommand2.slabTemperature" relation="relation12"/>
+    <link port="SystemCommand2.roomTemperature" relation="relation8"/>
     <link port="SystemCommand2.numZones" relation="relation11"/>
     <link port="numZones.output" relation="relation11"/>
     <link port="SystemCommand3.exitValue" relation="relation22"/>
@@ -11450,12 +11456,12 @@
     <link port="Flex_X3AWithRadiantFloor.mSlab_flow_3_" relation="relation14"/>
     <link port="Flex_X3AWithRadiantFloor.mSlab_flow_4_" relation="relation14"/>
     <link port="Flex_X3AWithRadiantFloor.TSlabIn" relation="relation13"/>
-    <link port="Flex_X3AWithRadiantFloor.TRooAir" relation="relation10"/>
+    <link port="Flex_X3AWithRadiantFloor.TRooAir" relation="relation8"/>
     <link port="Flex_X3AWithRadiantFloor.TSlabSur_1_" relation="relation2"/>
     <link port="Flex_X3AWithRadiantFloor.TSlabSur_2_" relation="relation4"/>
     <link port="Flex_X3AWithRadiantFloor.TSlabSur_3_" relation="relation6"/>
     <link port="Flex_X3AWithRadiantFloor.TSlabSur_4_" relation="relation7"/>
-    <link port="Expression.output" relation="relation8"/>
+    <link port="Expression.output" relation="relation12"/>
     <link port="Expression.slab1" relation="relation2"/>
     <link port="Expression.slab2" relation="relation4"/>
     <link port="Expression.slab3" relation="relation6"/>
