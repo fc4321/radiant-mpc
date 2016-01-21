@@ -2,7 +2,8 @@ using HDF5
 using JuMP
 using Cbc
 
-numZones = parse(Int, ARGS[1])
+#numZones = parse(Int, ARGS[1])
+numZones = 1
 
 include("finiteHorizonControllerMultiZone.jl")
 
@@ -34,10 +35,10 @@ modes = finiteHorizonControllerMultiZone(A,E,x0,H,b,d,x_max,x_min,rho)
 
 output = zeros(numZones * 2,1)
 for zone = 1:numZones
-    if modes[1,1,zone] == 1
+    if round(modes[1,1,zone]) == 1
       waterFlowRate = 0.504
       waterTemperature = 283
-    elseif modes[2,1,zone] == 1
+    elseif round(modes[2,1,zone]) == 1
       waterFlowRate = 0
       waterTemperature = 293
     else
