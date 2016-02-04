@@ -1,13 +1,13 @@
 using HDF5
 
-x0=[293;293];
+x0=[293.0;293.0];
 H = [eye(2);-eye(2)];
-b = [3200;320;-250;-250];
-N = 24;
-d = 293*ones(1,N,1);
-x_max = 290;
-x_min = 270;
-rho = 1;
+b = [320.0;320.0;-250.0;-250.0];
+N = 4;
+d = 293.0*ones(1,N,1);
+x_max = 300.0;
+x_min = 295.0;
+rho = 1.0;
 
 h5write("systemParameters.hdf5", "d", d)
 h5write("systemParameters.hdf5", "H", H)

@@ -73,13 +73,13 @@
         <property name="_location" class="ptolemy.kernel.util.Location" value="[-375.0, -40.0]">
         </property>
     </property>
-    <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute" value="{bounds={87, 256, 874, 539}, maximized=false}">
+    <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute" value="{bounds={87, 258, 874, 603}, maximized=false}">
     </property>
-    <property name="_vergilSize" class="ptolemy.actor.gui.SizeAttribute" value="[660, 450]">
+    <property name="_vergilSize" class="ptolemy.actor.gui.SizeAttribute" value="[660, 514]">
     </property>
     <property name="_vergilZoomFactor" class="ptolemy.data.expr.ExpertParameter" value="0.8073470802287314">
     </property>
-    <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{-167.0324283138711, 91.9279371995195}">
+    <property name="_vergilCenter" class="ptolemy.data.expr.ExpertParameter" value="{88.96757168612896, -121.4360737894915}">
     </property>
     <entity name="SystemCommand" class="lbnl.actor.lib.SystemCommand">
         <property name="programName" class="ptolemy.data.expr.FileParameter" value="python">
@@ -11397,45 +11397,6 @@
         <property name="_location" class="ptolemy.kernel.util.Location" value="[155.0, -135.0]">
         </property>
     </entity>
-    <entity name="AddSubtract" class="ptolemy.actor.lib.AddSubtract">
-        <property name="_location" class="ptolemy.kernel.util.Location" value="[25.0, -180.0]">
-        </property>
-        <port name="minus" class="ptolemy.actor.TypedIOPort">
-            <property name="input"/>
-            <property name="multiport"/>
-            <property name="_hide" class="ptolemy.data.expr.SingletonParameter" value="true">
-            </property>
-        </port>
-    </entity>
-    <entity name="Const6" class="ptolemy.actor.lib.Const">
-        <property name="value" class="ptolemy.data.expr.Parameter" value="298">
-        </property>
-        <doc>Create a constant sequence.</doc>
-        <property name="_icon" class="ptolemy.vergil.icon.BoxedValueIcon">
-            <property name="attributeName" class="ptolemy.kernel.util.StringAttribute" value="value">
-            </property>
-            <property name="displayWidth" class="ptolemy.data.expr.Parameter" value="60">
-            </property>
-        </property>
-        <property name="_location" class="ptolemy.kernel.util.Location" value="{-65, -145}">
-        </property>
-    </entity>
-    <entity name="TriggeredSinewave" class="ptolemy.actor.lib.TriggeredSinewave">
-        <property name="magnitude" class="ptolemy.data.expr.Parameter" value="10">
-        </property>
-        <property name="frequency" class="ptolemy.actor.parameters.PortParameter" value="1/(60*60*24)">
-        </property>
-        <property name="_location" class="ptolemy.kernel.util.Location" value="[-135.0, -185.0]">
-        </property>
-    </entity>
-    <entity name="Display" class="ptolemy.actor.lib.gui.Display">
-        <property name="_windowProperties" class="ptolemy.actor.gui.WindowPropertiesAttribute" value="{bounds={639, 501, 535, 221}, maximized=false}">
-        </property>
-        <property name="_paneSize" class="ptolemy.actor.gui.SizeAttribute" value="[535, 172]">
-        </property>
-        <property name="_location" class="ptolemy.kernel.util.Location" value="{95, -325}">
-        </property>
-    </entity>
     <relation name="relation" class="ptolemy.actor.TypedIORelation">
     </relation>
     <relation name="relation5" class="ptolemy.actor.TypedIORelation">
@@ -11504,16 +11465,6 @@
         <vertex name="vertex1" value="[260.0, -190.0]">
         </vertex>
     </relation>
-    <relation name="relation28" class="ptolemy.actor.TypedIORelation">
-    </relation>
-    <relation name="relation29" class="ptolemy.actor.TypedIORelation">
-    </relation>
-    <relation name="relation30" class="ptolemy.actor.TypedIORelation">
-        <property name="width" class="ptolemy.data.expr.Parameter" value="-1">
-        </property>
-        <vertex name="vertex1" value="[-45.0, -185.0]">
-        </vertex>
-    </relation>
     <link port="SystemCommand.exitValue" relation="relation19"/>
     <link port="SystemCommand.output" relation="relation"/>
     <link port="SystemCommand.error" relation="relation17"/>
@@ -11543,7 +11494,7 @@
     <link port="Expression.slab4" relation="relation8"/>
     <link port="Const4.output" relation="relation20"/>
     <link port="Flex_X3AWithRadiantFloor.TNeiRoo" relation="relation12"/>
-    <link port="Flex_X3AWithRadiantFloor.TDryBulOut" relation="relation29"/>
+    <link port="Flex_X3AWithRadiantFloor.TDryBulOut" relation="relation12"/>
     <link port="Flex_X3AWithRadiantFloor.HDifHor" relation="relation20"/>
     <link port="Flex_X3AWithRadiantFloor.HDirNor" relation="relation20"/>
     <link port="Flex_X3AWithRadiantFloor.qGai_flow_1_" relation="relation25"/>
@@ -11571,10 +11522,4 @@
     <link port="StringToDouble3.input" relation="relation2"/>
     <link port="StringToDouble3.output" relation="relation7"/>
     <link port="Const2.output" relation="relation25"/>
-    <link port="AddSubtract.plus" relation="relation30"/>
-    <link port="AddSubtract.plus" relation="relation28"/>
-    <link port="AddSubtract.output" relation="relation29"/>
-    <link port="Const6.output" relation="relation28"/>
-    <link port="TriggeredSinewave.output" relation="relation30"/>
-    <link port="Display.input" relation="relation30"/>
 </entity>

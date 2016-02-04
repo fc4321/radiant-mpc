@@ -45,6 +45,5 @@ function finiteHorizonControllerMultiZone(A,E,x0,H,b,d,x_max,x_min,rho)
     @addConstraint(model, coolingOn + heatingOn <= 1)
     @setObjective(model, Min, sum(slacks)+ rho * sum(modes[[1,3],:,:]) + rho * coolingOn + rho * heatingOn)
     solve(model)
-
     getValue(modes)
 end
